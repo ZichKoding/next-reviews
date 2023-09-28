@@ -1,3 +1,6 @@
 {
-  "/page": "app/page.js"
+  "/not-found": "app/not-found.js",
+  "/page": "app/page.js",
+  "/reviews/page": "app/reviews/page.js",
+  "/reviews/stardew-valley/page": "app/reviews/stardew-valley/page.js"
 }

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
-import './global.css';
+import './globals.css';
 
 interface LayoutProps {
     children: ReactNode;
@@ -9,15 +9,10 @@ interface LayoutProps {
 export default function RootLayout({ children }: LayoutProps) {
     return (
         <html lang="en">
-            <head>
-                <title>Game Reviews</title>
-                <meta charSet="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-            </head>
-            <body>
+            <body className="px-4 py-2">
                 <header>
                     <nav>
-                        <ul>
+                        <ul className="">
                             <li>
                                 <Link href="/">Home</Link>
                             </li>
@@ -30,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps) {
                         </ul>
                     </nav>
                 </header>
-                <main>
+                <main className="">
                     {children}
                 </main>
                 <footer>

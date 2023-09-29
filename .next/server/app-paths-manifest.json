@@ -1,3 +1,8 @@
 {
-  "/page": "app/page.js"
+  "/_not-found": "app/_not-found.js",
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
+  "/reviews/page": "app/reviews/page.js",
+  "/reviews/hollow-knight/page": "app/reviews/hollow-knight/page.js",
+  "/reviews/stardew-valley/page": "app/reviews/stardew-valley/page.js"
 }

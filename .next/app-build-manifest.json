@@ -1,53 +1,24 @@
 {
   "pages": {
-    "/_not-found": [
-      "static/chunks/webpack-bf1a64d1eafd2816.js",
-      "static/chunks/fd9d1056-e43e6bee82f6984c.js",
-      "static/chunks/864-bcc4f2c5e592efc4.js",
-      "static/chunks/main-app-a9af78d7dbcbfadb.js",
-      "static/chunks/app/_not-found-c3bf2d41fc134fab.js"
-    ],
     "/layout": [
-      "static/chunks/webpack-bf1a64d1eafd2816.js",
-      "static/chunks/fd9d1056-e43e6bee82f6984c.js",
-      "static/chunks/864-bcc4f2c5e592efc4.js",
-      "static/chunks/main-app-a9af78d7dbcbfadb.js",
-      "static/chunks/app/layout-e3c4946f51247af0.js"
-    ],
-    "/page": [
-      "static/chunks/webpack-bf1a64d1eafd2816.js",
-      "static/chunks/fd9d1056-e43e6bee82f6984c.js",
-      "static/chunks/864-bcc4f2c5e592efc4.js",
-      "static/chunks/main-app-a9af78d7dbcbfadb.js",
-      "static/chunks/app/page-56514223443d24de.js"
-    ],
-    "/about/page": [
-      "static/chunks/webpack-bf1a64d1eafd2816.js",
-      "static/chunks/fd9d1056-e43e6bee82f6984c.js",
-      "static/chunks/864-bcc4f2c5e592efc4.js",
-      "static/chunks/main-app-a9af78d7dbcbfadb.js",
-      "static/chunks/app/about/page-25579e8fae4d9921.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/layout.js"
     ],
     "/reviews/page": [
-      "static/chunks/webpack-bf1a64d1eafd2816.js",
-      "static/chunks/fd9d1056-e43e6bee82f6984c.js",
-      "static/chunks/864-bcc4f2c5e592efc4.js",
-      "static/chunks/main-app-a9af78d7dbcbfadb.js",
-      "static/chunks/app/reviews/page-3195bd51e7bc7eba.js"
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/reviews/page.js"
     ],
-    "/reviews/hollow-knight/page": [
-      "static/chunks/webpack-bf1a64d1eafd2816.js",
-      "static/chunks/fd9d1056-e43e6bee82f6984c.js",
-      "static/chunks/864-bcc4f2c5e592efc4.js",
-      "static/chunks/main-app-a9af78d7dbcbfadb.js",
-      "static/chunks/app/reviews/hollow-knight/page-eaa97cd1184cebfa.js"
+    "/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/about/page.js"
     ],
-    "/reviews/stardew-valley/page": [
-      "static/chunks/webpack-bf1a64d1eafd2816.js",
-      "static/chunks/fd9d1056-e43e6bee82f6984c.js",
-      "static/chunks/864-bcc4f2c5e592efc4.js",
-      "static/chunks/main-app-a9af78d7dbcbfadb.js",
-      "static/chunks/app/reviews/stardew-valley/page-73a7eabff26a35f2.js"
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
     ]
   }
 }

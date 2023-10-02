@@ -1,5 +1,5 @@
 ---
-title: "Hollow Knight"
+title: "Hellblade"
 date: "2023-10-02"
 image: "/images/hellblade.jpg"
 ---

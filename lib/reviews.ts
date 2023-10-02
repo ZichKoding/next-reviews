@@ -5,7 +5,6 @@ import { marked } from "marked";
 interface Review {
     title: string;
     date: string;
-    slug: string;
     content: string;
     image: string;
 }
@@ -20,5 +19,5 @@ export async function getReviews(slug: string): Promise<Review> {
     
     const body = marked(content);
     
-    return {title: title, date: curr_date, content: body, image: image, slug: slug};
+    return {title: title, date: curr_date, content: body, image: image};
 }

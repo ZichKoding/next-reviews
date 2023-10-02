@@ -15,5 +15,5 @@ export default function HomePage() {
                 Only the best indie games, reviewed for you. 
             </p>
         </>
-    )
+    );
 }

@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { roboto_flex } from "@/app/fonts";
 
 
 interface HeadingProps {
@@ -8,7 +7,7 @@ interface HeadingProps {
 
 export default function Heading({ children }: HeadingProps) {
     return (
-        <h1 className={`font-bold pb-3 text-2xl ${roboto_flex.className}`}>
+        <h1 className="font-bold font-orbitron pb-3 text-2xl">
             {children}
         </h1>
     );

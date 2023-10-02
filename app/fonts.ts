@@ -1,5 +1,6 @@
-import { Roboto_Flex } from 'next/font/google';
+import { Orbitron } from 'next/font/google';
 
-export const roboto_flex = Roboto_Flex({
+export const orbitron = Orbitron({
     subsets: ['latin'],
+    variable: '--font-orbitron',
 });

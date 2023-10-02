@@ -1,5 +1,5 @@
 import Heading from "@/components/Heading";
-import { getReviews } from "@/lib/reviews";
+import { getReview } from "@/lib/reviews";
 
 interface ReviewPageProps {
     params: {
@@ -8,7 +8,7 @@ interface ReviewPageProps {
 }
 
 export default async function ReviewPage({ params: { slug } }: ReviewPageProps) {
-    const review = await getReviews(slug);
+    const review = await getReview(slug);
 
     return (
         <>

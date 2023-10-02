@@ -1,14 +1,16 @@
 'use client';
 
+import Heading from "../components/Heading";
+
 export default function HomePage() {
     
     console.log('[HomePage] rendering');
 
     return (
         <>
-            <h1>
+            <Heading>
                 Indie Gamer
-            </h1>
+            </Heading>
             <p>
                 Only the best indie games, reviewed for you. 
             </p>

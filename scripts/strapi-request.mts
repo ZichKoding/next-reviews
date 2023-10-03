@@ -8,7 +8,7 @@ const fetchData = async () => {
             fields: ['slug', 'title', 'subtitle', 'publishedAt'],
             populate: { image: { fields: ['url'] } },
             pagination: { pageSize: 1, withCount: false },
-        }, { encodeVauesOnly: true });
+        }, { encodeValuesOnly: true });
     console.log(url);
     
     const response = await fetch(url);

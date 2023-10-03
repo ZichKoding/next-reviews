@@ -1,5 +1,4 @@
-import { readdir, readFile } from "node:fs/promises";
-import matter from "gray-matter";
+import { readdir } from "node:fs/promises";
 import { marked } from "marked";
 import qs from "qs";
 
@@ -25,24 +24,30 @@ export async function getFeaturedReview(): Promise<Review> {
 };
 
 export async function getReview(slug: string): Promise<Review> {
-    const text = await readFile(`./content/reviews/${slug}.md`, "utf-8");
-    const { content, data: { title, date, image} } = matter(text);
+    const url = `${CMS_URL}/api/reviews?`
+        + qs.stringify({
+            filters: { slug: {$eq: slug} },
+            fields: ['slug', 'title', 'subtitle', 'publishedAt', 'body'],
+            populate: { image: { fields: ['url'] } },
+            pagination: { pageSize: 1, withCount: false },
+        }, { encodeValuesOnly: true });
 
-    const curr_date = new Date(
-        new Date(date).setDate(new Date(date).getDate() + 1)
+    const response = await fetch(url);
+    const { data } = await response.json();
+    const { attributes } = data[0];
+
+    const date = new Date(
+        new Date(attributes.publishedAt).setDate(new Date(attributes.publishedAt).getDate() + 1)
     ).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-    
-    const body = marked(content);
-    
-    return {title: title, date: curr_date, content: body, image: image, slug: slug};
-};
 
-/* 
-    slug
-    title
-    date
-    image
-*/
+    return {
+        slug: attributes.slug,
+        title: attributes.title,
+        date: date,
+        image: CMS_URL + attributes.image.data.attributes.url,
+        content: marked(attributes.body),
+    };
+};
 
 export async function getReviews(): Promise<Review[]> {
     const url = `${CMS_URL}/api/reviews?`
@@ -53,11 +58,8 @@ export async function getReviews(): Promise<Review[]> {
             pagination: { pageSize: 6 },
         }, { encodeValuesOnly: true });
 
-    console.log(url);
-
     const response = await fetch(url);
-    const { data } = await response.json();
-    
+    const { data } = await response.json();    
 
     return data.map(({ attributes }: any) => ({
         slug: attributes.slug,

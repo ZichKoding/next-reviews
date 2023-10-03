@@ -16,7 +16,8 @@ interface ReviewPageProps {
 // }
 
 export async function generateMetadata({ params: { slug } }: ReviewPageProps) {
-    const review = await getReview(slug);
+    const review = await getReview(slug);    
+
     return {
         title: review.title,
         description: review.content,

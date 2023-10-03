@@ -8,6 +8,7 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.0.18",
+        "@types/qs": "^6.9.8",
         "gray-matter": "^4.0.3",
         "marked": "^9.0.3",
         "next": "^13.5.3",

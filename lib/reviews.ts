@@ -1,6 +1,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import matter from "gray-matter";
 import { marked } from "marked";
+import qs from "qs";
 
 interface Review {
     title: string;
@@ -8,7 +9,7 @@ interface Review {
     content: string;
     image: string;
     slug: string;
-}
+};
 
 export async function getFeaturedReview(): Promise<Review> {
     `
@@ -18,7 +19,7 @@ export async function getFeaturedReview(): Promise<Review> {
     const reviews = await getReviews();
 
     return await reviews[0];
-}
+};
 
 export async function getReview(slug: string): Promise<Review> {
     const text = await readFile(`./content/reviews/${slug}.md`, "utf-8");
@@ -31,19 +32,35 @@ export async function getReview(slug: string): Promise<Review> {
     const body = marked(content);
     
     return {title: title, date: curr_date, content: body, image: image, slug: slug};
-}
+};
+
+/* 
+    slug
+    title
+    date
+    image
+*/
 
 export async function getReviews(): Promise<Review[]> {
-    const slugs = await getSlugs();
-    const reviews = [];
+    const url = 'http://localhost:1337/api/reviews?'
+        + qs.stringify({
+            fields: ['slug', 'title', 'subtitle', 'publishedAt'],
+            populate: { image: { fields: ['url'] } },
+            sort: ['publishedAt:desc'],
+            pagination: { pageSize: 6 },
+        }, { encodeValuesOnly: true });
 
-    for (const slug of slugs) {
-        const review = await getReview(slug);
-        reviews.push(review);
-    }
-    reviews.sort((rev1, rev2) => rev2.date.localeCompare(rev1.date));
-    return reviews;
-}
+    console.log(url);
+
+    const response = await fetch(url);
+    const { data } = await response.json();
+    
+
+    return data.map(({ attributes }: any) => ({
+        slug: attributes.slug,
+        title: attributes.title,
+    }));
+};
 
 export async function getSlugs(): Promise<string[]> {
     const files = await readdir("./content/reviews");
@@ -52,4 +69,4 @@ export async function getSlugs(): Promise<string[]> {
         .map((file) => file.slice(0, -'.md'.length));
 
     return slugs;
-}
+};

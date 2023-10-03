@@ -1,11 +1,19 @@
 import type { ReactNode } from 'react';
+import { Metadata } from "next";
 import NavBar from '../components/NavBar';
 import './globals.css';
 import { orbitron, exo2 } from './fonts';
 
 interface LayoutProps {
     children: ReactNode;
-}
+};
+
+export const metadata: Metadata = {
+    title: {
+        default: "Indie Gamer",
+        template: "%s | Indie Gamer"
+    },
+};
 
 export default function RootLayout({ children }: LayoutProps) {
     return (
@@ -26,4 +34,4 @@ export default function RootLayout({ children }: LayoutProps) {
             </body>
         </html>
     );
-}
+};

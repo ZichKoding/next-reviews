@@ -9,3 +9,7 @@ package-lock.json
 .next
 /.next
 ./.next
+
+next-env.d.ts
+/next-env.d.ts
+./next-env.d.ts

@@ -1,5 +1,6 @@
 "use client";
 
+import { LinkIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 
 export default function ShareLinkButton() {
@@ -15,8 +16,10 @@ export default function ShareLinkButton() {
 
     return (
         <button onClick={handleClick}
-            className="border px-2 py-1 rounded text-slate-500 text-sm
+            className="border flex gap-1 px-2 py-1 
+                rounded text-slate-500 text-sm
                 hover:bg-orange-100 hover:text-slate-700">
+            <LinkIcon className="inline-block mr-1 h-4 w-4" />
             {clicked ? 'Link copied!' : 'Share Link'}
         </button>
     );

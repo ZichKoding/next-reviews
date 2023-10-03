@@ -2,10 +2,6 @@ node_modules
 /node_modules
 ./node_modules
 
-package-lock.json
-/package-lock.json
-./package-lock.json
-
 .next
 /.next
 ./.next
@@ -13,3 +9,7 @@ package-lock.json
 next-env.d.ts
 /next-env.d.ts
 ./next-env.d.ts
+
+text.txt
+/text.txt
+./text.txt

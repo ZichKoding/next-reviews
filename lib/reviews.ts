@@ -3,6 +3,8 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import qs from "qs";
 
+const CMS_URL = "http://localhost:1337";
+
 interface Review {
     title: string;
     date: string;
@@ -10,6 +12,7 @@ interface Review {
     image: string;
     slug: string;
 };
+
 
 export async function getFeaturedReview(): Promise<Review> {
     `
@@ -42,7 +45,7 @@ export async function getReview(slug: string): Promise<Review> {
 */
 
 export async function getReviews(): Promise<Review[]> {
-    const url = 'http://localhost:1337/api/reviews?'
+    const url = `${CMS_URL}/api/reviews?`
         + qs.stringify({
             fields: ['slug', 'title', 'subtitle', 'publishedAt'],
             populate: { image: { fields: ['url'] } },
@@ -59,6 +62,8 @@ export async function getReviews(): Promise<Review[]> {
     return data.map(({ attributes }: any) => ({
         slug: attributes.slug,
         title: attributes.title,
+        date: attributes.publishedAt,
+        image: CMS_URL + attributes.image.data.attributes.url,
     }));
 };
 

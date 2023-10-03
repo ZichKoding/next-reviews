@@ -24,49 +24,32 @@ export async function getFeaturedReview(): Promise<Review> {
 };
 
 export async function getReview(slug: string): Promise<Review> {
-    const url = `${CMS_URL}/api/reviews?`
-        + qs.stringify({
+    const { data }: any = await fetchReviews(
+        {
             filters: { slug: {$eq: slug} },
             fields: ['slug', 'title', 'subtitle', 'publishedAt', 'body'],
             populate: { image: { fields: ['url'] } },
             pagination: { pageSize: 1, withCount: false },
-        }, { encodeValuesOnly: true });
-
-    const response = await fetch(url);
-    const { data } = await response.json();
+        }
+    );
     const { attributes } = data[0];
 
-    const date = new Date(
-        new Date(attributes.publishedAt).setDate(new Date(attributes.publishedAt).getDate() + 1)
-    ).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-
+    const item = data[0];
     return {
-        slug: attributes.slug,
-        title: attributes.title,
-        date: date,
-        image: CMS_URL + attributes.image.data.attributes.url,
+        ...toReview(item),
         content: marked(attributes.body),
     };
 };
 
 export async function getReviews(): Promise<Review[]> {
-    const url = `${CMS_URL}/api/reviews?`
-        + qs.stringify({
-            fields: ['slug', 'title', 'subtitle', 'publishedAt'],
-            populate: { image: { fields: ['url'] } },
-            sort: ['publishedAt:desc'],
-            pagination: { pageSize: 6 },
-        }, { encodeValuesOnly: true });
+    const { data }: any = await fetchReviews({
+        fields: ['slug', 'title', 'subtitle', 'publishedAt'],
+        populate: { image: { fields: ['url'] } },
+        sort: ['publishedAt:desc'],
+        pagination: { pageSize: 6 },
+    });
 
-    const response = await fetch(url);
-    const { data } = await response.json();    
-
-    return data.map(({ attributes }: any) => ({
-        slug: attributes.slug,
-        title: attributes.title,
-        date: attributes.publishedAt,
-        image: CMS_URL + attributes.image.data.attributes.url,
-    }));
+    return data.map(toReview);
 };
 
 export async function getSlugs(): Promise<string[]> {
@@ -77,3 +60,29 @@ export async function getSlugs(): Promise<string[]> {
 
     return slugs;
 };
+
+async function fetchReviews(parameters: any): Promise<Review[]> {
+    const url = `${CMS_URL}/api/reviews?`
+        + qs.stringify(parameters, { encodeValuesOnly: true });
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`CMS returned ${response.status} for ${url}`);
+    }
+
+    return await response.json();
+};
+
+function toReview(item: any) {
+    const { attributes } = item;
+
+    const date = new Date(attributes.publishedAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+    return {
+        slug: attributes.slug,
+        title: attributes.title,
+        date: date,
+        image: CMS_URL + attributes.image.data.attributes.url,
+    };
+}

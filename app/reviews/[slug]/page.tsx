@@ -26,6 +26,8 @@ export async function generateMetadata({ params: { slug } }: ReviewPageProps) {
 }
 
 export default async function ReviewPage({ params: { slug } }: ReviewPageProps) {
+    console.log('[ReviewPage] rendering:', slug);
+
     const review = await getReview(slug);
 
     return (

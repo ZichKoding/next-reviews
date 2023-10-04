@@ -4,7 +4,10 @@ import Heading from "@/components/Heading";
 import { getReviews } from "@/lib/reviews";
 
 export default async function HomePage() {
-    const review = await getReviews(3);
+    const reviews = await getReviews(3);
+
+    console.log('[HomePage] rendering:', 
+        reviews.map(review => review.slug).join(', '));
 
     return (
         <>
@@ -15,7 +18,7 @@ export default async function HomePage() {
                 Only the best indie games, reviewed for you. 
             </p>
             <ul className="flex flex-col gap-3">
-                {review.map((review, index) => (
+                {reviews.map((review, index) => (
                     <li key={review.slug}
                         className="bg-white border rounded shadow w-80 
                                     hover:shadow-xl sm:w-full">

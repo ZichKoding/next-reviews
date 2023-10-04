@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ReviewsPage() {
-    const reviews = await getReviews(6);    
+    const reviews = await getReviews(6);
+
+    console.log('[ReviewsPage] rendering:', 
+        reviews.map(review => review.slug).join(', '));
 
     return (
         <>
@@ -21,7 +24,7 @@ export default async function ReviewsPage() {
             </p>
             <ul className="flex flex-row flex-wrap gap-3">
                 {reviews.map((review, index) => (
-                    <li key={review.title}
+                    <li key={review.slug}
                         className="bg-white border rounded shadow w-80 hover:shadow-xl">
                         <Link href={`/reviews/${review.slug}`}>
                             <Image src={review.image} alt={review.title} priority={index === 0}

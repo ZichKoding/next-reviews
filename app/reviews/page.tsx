@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Heading from "@/components/Heading";
 import { getReviews } from "@/lib/reviews";
 import { Metadata } from "next";
@@ -23,7 +24,7 @@ export default async function ReviewsPage() {
                     <li key={review.slug}
                         className="bg-white border rounded shadow w-80 hover:shadow-xl">
                         <Link href={`/reviews/${review.slug}`}>
-                            <img src={review.image} alt={review.title}
+                            <Image src={review.image} alt={review.title}
                                 width="320" height="180" className="mb-2 rounded-t"/>
                             <h2 className="font-semibold font-orbitron py-1 text-center"> 
                                 {review.title}

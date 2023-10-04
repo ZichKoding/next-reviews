@@ -20,11 +20,11 @@ export default async function ReviewsPage() {
                 Here are a list of reviews. Click on one to read more.
             </p>
             <ul className="flex flex-row flex-wrap gap-3">
-                {reviews.map((review) => (
-                    <li key={review.slug}
+                {reviews.map((review, index) => (
+                    <li key={review.title}
                         className="bg-white border rounded shadow w-80 hover:shadow-xl">
                         <Link href={`/reviews/${review.slug}`}>
-                            <Image src={review.image} alt={review.title}
+                            <Image src={review.image} alt={review.title} priority={index === 0}
                                 width="320" height="180" className="mb-2 rounded-t"/>
                             <h2 className="font-semibold font-orbitron py-1 text-center"> 
                                 {review.title}

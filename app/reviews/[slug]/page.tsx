@@ -13,7 +13,6 @@ interface ReviewPageProps {
 
 export async function generateStaticParams() {
     const slugs = await getSlugs();
-    console.log('Review Page - generateStaticParams: ', slugs);
     return slugs.map( slug => ({ slug }) );
 }
 
@@ -42,7 +41,7 @@ export default async function ReviewPage({ params: { slug } }: ReviewPageProps) 
                 </p>
                 <ShareLinkButton />
             </div>
-            <Image src={review.image} alt={review.title} 
+            <Image src={review.image} alt={review.title} priority
                 width="640" height="360" className="mb-2 rounded"/>
             <article dangerouslySetInnerHTML={{ __html: review.content }}
                 className="max-w-screen-sm prose prose-slate " />

@@ -53,12 +53,13 @@ export async function getReviews(): Promise<Review[]> {
 };
 
 export async function getSlugs(): Promise<string[]> {
-    const files = await readdir("./content/reviews");
+    const { data }: any = await fetchReviews({
+        fields: ['slug'],
+        sort: ['publishedAt:desc'],
+        pagination: { pageSize: 100 },
+    });
 
-    const slugs = files.filter((file) => file.endsWith(".md"))
-        .map((file) => file.slice(0, -'.md'.length));
-
-    return slugs;
+    return data.map((item: any) => item.attributes.slug);
 };
 
 async function fetchReviews(parameters: any): Promise<Review[]> {

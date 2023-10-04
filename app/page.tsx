@@ -23,9 +23,14 @@ export default async function HomePage() {
                             className="flex flex-col sm:flex-row">
                             <Image src={review.image} alt={review.title} priority={index === 0}
                                 width="320" height="180" className="mb-2 rounded-t" />
-                            <h2 className="font-orbitron font-semibold py-1 text-center sm:px-2 ">
-                                {review.title}
-                            </h2>
+                            <div className="px-2 py-1 text-center sm:text-left">
+                                <h2 className="font-orbitron font-semibold">
+                                    {review.title}
+                                </h2>
+                                <p className="hidden pt-2 sm:block">
+                                    {review.subtitle}
+                                </p>
+                            </div>
                         </Link>
                     </li>
                 ))}

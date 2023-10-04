@@ -6,6 +6,7 @@ const CMS_URL = "http://localhost:1337";
 
 interface Review {
     title: string;
+    subtitle: string;
     date: string;
     content: string;
     image: string;
@@ -72,6 +73,7 @@ function toReview(item: any) {
     return {
         slug: attributes.slug,
         title: attributes.title,
+        subtitle: attributes.subtitle,
         date: date,
         image: CMS_URL + attributes.image.data.attributes.url,
     };

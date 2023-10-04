@@ -33,6 +33,9 @@ export default async function ReviewPage({ params: { slug } }: ReviewPageProps) 
             <Heading>
                 {review.title}
             </Heading>
+            <p className="font-semibold pb-3">
+                {review.subtitle}
+            </p>
             <div className="flex gap-3 items-baseline">
                 <p className="italic pb-2">
                     {

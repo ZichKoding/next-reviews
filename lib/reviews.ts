@@ -12,17 +12,6 @@ interface Review {
     slug: string;
 };
 
-
-export async function getFeaturedReview(): Promise<Review> {
-    `
-    Get the most recent review from the reviews directory
-    and return it as a Review object.
-    `
-    const reviews = await getReviews();
-
-    return await reviews[0];
-};
-
 export async function getReview(slug: string): Promise<Review> {
     const { data }: any = await fetchReviews(
         {
@@ -41,12 +30,12 @@ export async function getReview(slug: string): Promise<Review> {
     };
 };
 
-export async function getReviews(): Promise<Review[]> {
+export async function getReviews(pageSize: number): Promise<Review[]> {
     const { data }: any = await fetchReviews({
         fields: ['slug', 'title', 'subtitle', 'publishedAt'],
         populate: { image: { fields: ['url'] } },
         sort: ['publishedAt:desc'],
-        pagination: { pageSize: 6 },
+        pagination: { pageSize },
     });
 
     return data.map(toReview);

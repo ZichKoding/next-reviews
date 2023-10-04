@@ -13,7 +13,7 @@ interface Review {
     slug: string;
 };
 
-export async function getReview(slug: string): Promise<Review> {
+export async function getReview(slug: string): Promise<Review | null> {
     const { data }: any = await fetchReviews(
         {
             filters: { slug: {$eq: slug} },
@@ -22,6 +22,11 @@ export async function getReview(slug: string): Promise<Review> {
             pagination: { pageSize: 1, withCount: false },
         }
     );
+
+    if (data.length === 0) {
+        return null;
+    }
+
     const { attributes } = data[0];
 
     const item = data[0];

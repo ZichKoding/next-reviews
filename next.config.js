@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-    // output: 'export', Thhis is for static site generation
     images: {
         remotePatterns: [
         {

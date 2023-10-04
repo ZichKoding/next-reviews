@@ -4,6 +4,8 @@ import Heading from "@/components/Heading";
 import { getReviews } from "@/lib/reviews";
 import { Metadata } from "next";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: "Reviews",
 };

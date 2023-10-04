@@ -3,6 +3,8 @@ import Image from "next/image";
 import Heading from "@/components/Heading";
 import { getReviews } from "@/lib/reviews";
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
     const reviews = await getReviews(3);
 

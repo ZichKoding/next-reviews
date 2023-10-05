@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Heading from "@/components/Heading";
+import PaginationBar from "@/components/PaginationBar";
 import { getReviews } from "@/lib/reviews";
 import { Metadata } from "next";
 
@@ -25,11 +26,7 @@ export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
             <Heading>
                 Reviews
             </Heading>
-            <div>
-                <Link href={`/reviews?page=${page - 1}`} passHref>&lt;</Link>
-                <span>Page {page} of {pageCount}</span>
-                <Link href={`/reviews?page=${page + 1}`} passHref>&gt;</Link>
-            </div>
+            <PaginationBar href="/reviews" page={page} pageCount={pageCount} />
             <ul className="flex flex-row flex-wrap gap-3">
                 {reviews.map((review, index) => (
                     <li key={review.slug}

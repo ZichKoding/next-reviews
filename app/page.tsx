@@ -3,8 +3,6 @@ import Image from "next/image";
 import Heading from "@/components/Heading";
 import { getReviews } from "@/lib/reviews";
 
-export const revalidate = 30; // seconds
-
 export default async function HomePage() {
     const reviews = await getReviews(3);
 

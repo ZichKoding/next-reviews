@@ -4,8 +4,6 @@ import Heading from "@/components/Heading";
 import { getReviews } from "@/lib/reviews";
 import { Metadata } from "next";
 
-export const revalidate = 30; // seconds
-
 export const metadata: Metadata = {
     title: "Reviews",
 };

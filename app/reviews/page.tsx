@@ -16,7 +16,13 @@ export const metadata: Metadata = {
 const PAGE_SIZE = 6;
 
 export default async function ReviewsPage({ searchParams }: ReviewsPageProps) {
-    const page =  parsePageParam(searchParams.page);
+    let page;
+    if (searchParams.page) {
+        page =  parsePageParam(searchParams.page);
+    }
+    else {
+        page = 1;
+    }
     const { reviews, pageCount } = await getReviews(PAGE_SIZE, page);
 
     console.log('[ReviewsPage] reviews', page);

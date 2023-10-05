@@ -2,6 +2,8 @@ import { readdir } from "node:fs/promises";
 import { marked } from "marked";
 import qs from "qs";
 
+export const CACHE_TAG_REVIEWS = "reviews";
+
 const CMS_URL = "http://localhost:1337";
 
 interface Review {
@@ -63,7 +65,7 @@ async function fetchReviews(parameters: any): Promise<Review[]> {
 
     const response = await fetch(url, {
         next: {
-            revalidate: 30, // seconds
+            tags: [CACHE_TAG_REVIEWS],
         }
     });
 

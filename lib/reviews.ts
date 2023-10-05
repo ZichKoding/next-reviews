@@ -6,13 +6,18 @@ export const CACHE_TAG_REVIEWS = "reviews";
 
 const CMS_URL = "http://localhost:1337";
 
-interface Review {
+export interface Review {
     title: string;
     subtitle: string;
     date: string;
     content: string;
     image: string;
     slug: string;
+};
+
+export interface PaginatedReviews {
+    pageCount: number;
+    reviews: Review[];
 };
 
 export async function getReview(slug: string): Promise<Review | null> {
@@ -38,15 +43,18 @@ export async function getReview(slug: string): Promise<Review | null> {
     };
 };
 
-export async function getReviews(pageSize: number, page?: number): Promise<Review[]> {
-    const { data }: any = await fetchReviews({
+export async function getReviews(pageSize: number, page?: number): Promise<PaginatedReviews> {
+    const { data, meta }: any = await fetchReviews({
         fields: ['slug', 'title', 'subtitle', 'publishedAt'],
         populate: { image: { fields: ['url'] } },
         sort: ['publishedAt:desc'],
         pagination: { pageSize, page },
     });
 
-    return data.map(toReview);
+    return {
+        pageCount: meta.pagination.pageCount,
+        reviews: data.map(toReview),
+    };
 };
 
 export async function getSlugs(): Promise<string[]> {

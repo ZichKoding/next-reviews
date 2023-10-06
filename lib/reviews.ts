@@ -111,6 +111,6 @@ function toReview(item: any) {
         title: attributes.title,
         subtitle: attributes.subtitle,
         date: date,
-        image: CMS_URL + attributes.image.data.attributes.url,
+        image: new URL(attributes.image.data.attributes.url, CMS_URL).href,
     };
 }

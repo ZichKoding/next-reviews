@@ -20,7 +20,7 @@ export interface PaginatedReviews {
     reviews: Review[];
 };
 
-export type SearchableReview = Pick<Review, "title" | "slug">;
+export type SearchableReview = Pick<Review, "slug" | "title">;
 
 export async function getReview(slug: string): Promise<Review | null> {
     const { data }: any = await fetchReviews(
@@ -58,6 +58,19 @@ export async function getReviews(pageSize: number, page?: number): Promise<Pagin
         reviews: data.map(toReview),
     };
 };
+
+export async function getSearchableReviews(): Promise<SearchableReview[]> {
+    const { data }: any = await fetchReviews({
+        fields: ['slug', 'title'],
+        sort: ['publishedAt:desc'],
+        pagination: { pageSize: 100 },
+    });
+
+    return data.map(({ attributes }: { attributes: { slug: string, title: string } }) => ({
+        slug: attributes.slug,
+        title: attributes.title,
+    }));
+}
 
 export async function getSlugs(): Promise<string[]> {
     const { data }: any = await fetchReviews({

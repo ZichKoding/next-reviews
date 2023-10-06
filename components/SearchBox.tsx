@@ -1,35 +1,15 @@
-"use client";
+'use client';
+import type { SearchableReview } from '@/lib/reviews';
+import { Combobox } from '@headlessui/react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useIsClient } from '@/lib/hooks';
 
-import type { SearchableReview } from "@/lib/reviews";
-import { Combobox } from "@headlessui/react";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useIsClient } from "@/lib/hooks";
+export interface SearchBoxProps {
+    reviews: SearchableReview[];
+}
 
-const reviews = [
-    {
-        slug: 'hades-2018',
-        title: 'Hades',
-    },
-    {
-        slug: 'fall-guys',
-        title: 'Fall Guys: Ultimate Knockout',
-    },
-    {
-        slug: 'black-mesa',
-        title: 'Black Mesa',
-    },
-    {
-        slug: 'disco-elysium',
-        title: 'Disco Elysium',
-    },
-    {
-        slug: 'dead-cells',
-        title: 'Dead Cells',
-    }
-]
-
-export default function SearchBox() {
+export default function SearchBox({ reviews }: SearchBoxProps) {
     const router = useRouter();
     const isClient = useIsClient();
     const [query, setQuery] = useState('');
@@ -42,7 +22,9 @@ export default function SearchBox() {
         return null;
     }
 
-    const filtered = reviews.filter((review) => review.title.includes(query));
+    const filtered = reviews.filter((review) => 
+        review.title.toLowerCase().includes(query.toLowerCase())
+    ).slice(0, 5);
 
     return (
         <div className="relative w-48">

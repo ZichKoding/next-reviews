@@ -10,7 +10,7 @@ export interface PaginationBarProps {
 
 export default function PaginationBar({ href, page, pageCount }: PaginationBarProps) {
     return (
-        <div className='flex gap-2 items-center pb-3'>
+        <div className='flex gap-2 items-center'>
             <PaginationLink href={`${href}?page=${page - 1}`} enabled={page > 1}>
                 <ChevronLeftIcon className='w-5 h-5' />
                 <span className="sr-only">Previous Page</span>

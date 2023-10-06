@@ -20,6 +20,8 @@ export interface PaginatedReviews {
     reviews: Review[];
 };
 
+export type SearchableReview = Pick<Review, "title" | "slug">;
+
 export async function getReview(slug: string): Promise<Review | null> {
     const { data }: any = await fetchReviews(
         {

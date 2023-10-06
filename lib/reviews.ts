@@ -1,4 +1,5 @@
-import { readdir } from "node:fs/promises";
+import 'server-only';
+
 import { marked } from "marked";
 import qs from "qs";
 
